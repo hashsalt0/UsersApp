@@ -1,3 +1,7 @@
-void main(List<String> arguments) {
-  print('Hello world!');
+
+
+import 'looper.dart';
+
+void main() {
+  Looper().run();
 }

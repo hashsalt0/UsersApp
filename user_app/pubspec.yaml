@@ -12,3 +12,8 @@ environment:
 
 dev_dependencies:
   lints: ^1.0.0
+  test: ^1.20.2
+dependencies: 
+  dolumns: ^2.0.0
+  enough_serialization: ^1.4.0
+  file: ^6.1.2
