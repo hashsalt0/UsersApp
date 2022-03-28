@@ -27,8 +27,7 @@ class AddUserMenu extends Entry {
         StringValues.coursesSerial,
         StringValues.coursesPrompt,
         StringValues.coursesEntryPrompt,
-        Config.minCourseEntry,
-        Config.maxCourseEntry,
+        Config.courseEntry,
         Utils.castToCourse,
         Validations.coursesValidation);
   }

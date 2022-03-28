@@ -5,6 +5,8 @@ import '../model/user_model.dart';
 import 'string_values.dart';
 
 class Utils {
+  static String castToString(String? text) => text.toString();
+
   static UserModel fromFeildMap(Map<String, Field> map) {
     var transformedMap = map.map((key, value) => MapEntry(key, value.value));
     final deserializedUserModel = UserModel.fromJson(transformedMap);

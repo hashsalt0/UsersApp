@@ -25,8 +25,8 @@ class StringValues {
   static String displayUserMenuSortByText = "Enter feild name to sortby ";
   static String displayUserMenuSortAscendingChoice = "Sort By Ascending Order";
   static String displayUserMenuSortDescendingChoice = "Sort By Descending Order";
-
-  static get coursesPrompt => "Enter four $courses from  ${Course.values.map((e) {e.name;})}";
+  
+  static String get coursesPrompt => "Enter four $courses from  ${Course.values.map((e) => e.name)}";
 
   static const addUserMenuSucess = "Sucessfully created user.";
 
@@ -38,7 +38,7 @@ class StringValues {
   static const ageError = "Invalid $age";
   static const addressError = "Invalid $address";
   static const rollNumberError = "Invalid $rollNumber entered, enter an integer value";
-  static get coursesError => "Invalid $courses entered choose from ${Course.values}";
+  static get coursesError => "Invalid $courses entered choose from ${Course.values.map((e) => e.name)}";
 
   // serial values should be unique 
   static const fullNameSerial = "f";

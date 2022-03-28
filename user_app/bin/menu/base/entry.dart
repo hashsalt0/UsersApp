@@ -25,16 +25,27 @@ class Entry extends Menu {
     fields.putIfAbsent(name, () => newField);
   }
 
-
   void addMultiValueField<T>(
       String name,
       String message,
       String entryMessage,
-      int minEntry,
-      int maxEntry,
+      int entryCount,
       T? Function(String? text) cast,
       bool Function(T?, HashSet<T>?)? validationFunction) {
-    MultiValueField<T> newField = MultiValueField(name, message, entryMessage, minEntry, maxEntry)
+    MultiValueField<T> newField = MultiValueField(name, message, entryMessage, null, entryCount)
+      ..validate = validationFunction
+      ..cast = cast;
+    fields.putIfAbsent(name, () => newField);
+  }
+
+void addMultiValueFieldWithDifferentMessages<T>(
+      String name,
+      String message,
+      List<String> entryMessages,
+      int entryCount,
+      T? Function(String? text) cast,
+      bool Function(T?, HashSet<T>?)? validationFunction) {
+    MultiValueField<T> newField = MultiValueField(name, message, null, entryMessages, entryCount)
       ..validate = validationFunction
       ..cast = cast;
     fields.putIfAbsent(name, () => newField);
