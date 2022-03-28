@@ -1,4 +1,4 @@
-import '../exceptions/input_exception.dart';
+import '../exceptions/cast_exception.dart';
 import '../menu/base/field.dart';
 import '../model/course.dart';
 import '../model/user_model.dart';
@@ -13,12 +13,12 @@ class Utils {
 
   static Course castToCourse(String? text) {
     if (text == null) {
-      throw InputException("${StringValues.coursesError} $text");
+      throw CastException("${StringValues.coursesError} $text");
     }
     try {
       return Course.values.byName(text);
     } catch (e) {
-      throw InputException("${StringValues.coursesError} $text");
+      throw CastException("${StringValues.coursesError} $text");
     }
   }
 
@@ -26,7 +26,7 @@ class Utils {
     try {
       return int.parse(text ?? "");
     } catch (e) {
-      throw InputException("${StringValues.rollNumberError} $text");
+      throw CastException("${StringValues.rollNumberError} $text");
     }
   }
 

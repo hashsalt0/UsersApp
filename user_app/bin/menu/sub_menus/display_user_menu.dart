@@ -37,7 +37,7 @@ class DisplayUserMenu extends Choice {
         StringValues.address,
         StringValues.courses
       ],
-      ...Store.instance.listOfUser(compare).toList().map((e) => [
+      ...Store.instance.listOfUser(compare).map((e) => [
             e.fullName ?? "",
             e.rollNumber,
             e.age ?? "",

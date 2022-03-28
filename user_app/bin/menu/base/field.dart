@@ -20,17 +20,9 @@ abstract class Field<T> {
     try {
       block();
       return true;
-    } on RollNumberAlreadyExistsException catch (e) {
-      Log.debug(e);
-      Log.help("The roll number that you have entered is already present in the file storage.");
-    } on InvalidChoiceException catch (e) {
-      Log.debug(e);
-      Log.help("Enter the option as specified by the prompt.");
-    } on CourseAlreadyAddedException catch (e) {
-      Log.debug(e);
-      Log.help("You have already entered the same course before.");
     } on InputException catch (e, stackTrace) {
-      Log.error("Input Exception have occured.");
+      Log.help(e.displayMessage);
+      Log.help(e.errorMessage);
       Log.debug(e);
       Log.debug(stackTrace);
     } catch (e, stackTrace) {

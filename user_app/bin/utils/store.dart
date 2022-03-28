@@ -1,7 +1,5 @@
 import 'dart:collection';
 import 'dart:convert';
-import 'dart:io';
-
 
 import '../model/user_model.dart';
 import 'files_utils.dart';
@@ -21,6 +19,7 @@ class Store {
     return _instance;
   }
 
+  /// Reads the store file and loads it into memory
   loadStore() {
     String saveFileString = FilesUtils.readSaveFileAsString();
     if (saveFileString.isEmpty) {
@@ -29,14 +28,15 @@ class Store {
       Map<String, UserModel> decodedMap = (jsonDecode(saveFileString) as Map)
           .map((key, value) => MapEntry(key, UserModel.fromJson(value)));
       _store = SplayTreeMap.from(decodedMap);
-      
     }
   }
 
+  /// Saves [_store] to store file.
   void saveStore() {
     FilesUtils.save(_store);
   }
 
+  /// add user model if it is absent.
   void add(UserModel model) {
     _store.putIfAbsent(model.rollNumber.toString(), () => model);
   }
@@ -47,10 +47,9 @@ class Store {
 
   /// Returns [List] of [UserModel] in sorted order according to roll number
   /// @params [compare] function to sort the list according to some condition
-  List<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
-    List<UserModel> users = _store.values.toList();
-    users.sort((a, b) => compare(a, b));
-    return users;
+  Iterable<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
+    SplayTreeMap<UserModel, UserModel> reorderedMap = SplayTreeMap.from(_store, compare);
+    return reorderedMap.values;
   }
 
   void remove(int rollNumber) {
