@@ -21,18 +21,18 @@ abstract class Field<T> {
       block();
       return true;
     } on RollNumberAlreadyExistsException catch (e) {
-      Log.error(e);
-      Log.help(
-          "The roll number that you have entered is already present in the file storage.");
+      Log.debug(e);
+      Log.help("The roll number that you have entered is already present in the file storage.");
     } on InvalidChoiceException catch (e) {
-      Log.error(e);
+      Log.debug(e);
       Log.help("Enter the option as specified by the prompt.");
     } on CourseAlreadyAddedException catch (e) {
-      Log.error(e);
+      Log.debug(e);
       Log.help("You have already entered the same course before.");
     } on InputException catch (e, stackTrace) {
-      Log.error(e);
-      Log.error(stackTrace);
+      Log.error("Input Exception have occured.");
+      Log.debug(e);
+      Log.debug(stackTrace);
     } catch (e, stackTrace) {
       Log.debug(e);
       Log.debug(stackTrace);

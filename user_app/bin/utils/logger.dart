@@ -1,3 +1,4 @@
+import 'config.dart';
 import 'log_colors.dart';
 
 /// Log class helpful for debugging purposes
@@ -25,7 +26,7 @@ class Log {
   }
 
   static void debug(Object? text) {
-    _printHelp("${LogColors.cyan}$text${LogColors.reset}");
+    if(Config.env == Config.envDevelopment) _printHelp("${LogColors.cyan}$text${LogColors.reset}");
   }
 
   static void help(Object? text) {
