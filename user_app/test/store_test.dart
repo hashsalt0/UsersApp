@@ -6,9 +6,6 @@ import 'package:test/test.dart';
 import '../bin/utils/string_values.dart';
 
 void main() {
-  test('Local Save File Exists Test',
-      () async => expect(await Store.instance.localFile.exists(), true));
-
   test('Local Save File Exists Test', () {
     UserModel model = UserModel.fromJson({
       StringValues.rollNumberSerial: 1,
