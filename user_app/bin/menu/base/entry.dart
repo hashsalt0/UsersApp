@@ -14,7 +14,7 @@ class Entry extends Menu {
 
   final Map<String, Field> fields = {};
 
-  void addStaticField<T>(
+  void addSingleValueField<T>(
       String name,
       String message,
       T? Function(String? text) cast,
@@ -26,7 +26,7 @@ class Entry extends Menu {
   }
 
 
-  void addDynamicField<T>(
+  void addMultiValueField<T>(
       String name,
       String message,
       String entryMessage,

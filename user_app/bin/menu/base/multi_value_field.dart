@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import '../../utils/input.dart';
 import '../../utils/logger.dart';
-import '../../utils/utils.dart';
 import 'field.dart';
 import 'entry.dart';
 import '../../utils/validations.dart';

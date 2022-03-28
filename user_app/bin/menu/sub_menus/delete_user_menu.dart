@@ -7,7 +7,7 @@ import '../base/entry.dart';
 
 class DeleteUserMenu extends Entry {
   DeleteUserMenu() : super(StringValues.deleteUserMenuText) {
-    addStaticField<int>(
+    addSingleValueField<int>(
         StringValues.rollNumberSerial,
         StringValues.rollNumberPrompt,
         Utils.castToInt,

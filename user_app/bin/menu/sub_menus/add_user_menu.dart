@@ -11,19 +11,19 @@ import '../base/entry.dart';
 /// Add user menu
 class AddUserMenu extends Entry {
   AddUserMenu() : super(StringValues.addUserMenuText) {
-    addStaticField<String>(StringValues.fullNameSerial,
+    addSingleValueField<String>(StringValues.fullNameSerial,
         StringValues.fullNamePrompt, (s) => s, Validations.nameValidation);
-    addStaticField<String>(StringValues.addressSerial,
+    addSingleValueField<String>(StringValues.addressSerial,
         StringValues.addressPrompt, (s) => s, Validations.addressValidation);
-    addStaticField<int>(StringValues.ageSerial, StringValues.agePrompt,
+    addSingleValueField<int>(StringValues.ageSerial, StringValues.agePrompt,
         Utils.castToInt, Validations.ageValidation);
-    addStaticField<int>(
+    addSingleValueField<int>(
         StringValues.rollNumberSerial,
         StringValues.rollNumberPrompt,
         Utils.castToInt,
         Validations.rollNumberValidation);
 
-    addDynamicField<Course>(
+    addMultiValueField<Course>(
         StringValues.coursesSerial,
         StringValues.coursesPrompt,
         StringValues.coursesEntryPrompt,
