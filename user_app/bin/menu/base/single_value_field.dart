@@ -10,10 +10,10 @@ class SingleValueField<T> extends Field<T> {
   SingleValueField(String name, String message) : super(name, message);
 
   /// validate function (not necessary to provide)
-  bool Function(T?)? validate;
+  bool Function(T? castedValue)? validate;
 
   /// cast function for converting the string read to [T] (not necessary to provide)
-  late T? Function(String? text) cast;
+  late T? Function(String? recivedValue) cast;
 
   /// Reads a [T] value and return a [T]?. The returned value is guaranteed to 
   /// be a [T] type. As it read till it recives the correct value.

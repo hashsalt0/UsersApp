@@ -1,14 +1,17 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:file/local.dart';
 
 import '../model/user_model.dart';
-import 'config.dart';
+import 'files_utils.dart';
 
 class Store {
   // json encoder only support string map
-  late final Map<String, UserModel> _store;
+  late final SplayTreeMap<String, UserModel> _store;
+
+  // Flag to state weather the application is running or not.
+  bool isRunning = true;
 
   Store._();
 
@@ -18,27 +21,20 @@ class Store {
     return _instance;
   }
 
-  File get localFile {
-    final saveDir = LocalFileSystem().systemTempDirectory;
-    final file = File("${saveDir.path}\\${Config.saveFile}");
-    if (file.existsSync() == false) file.create();
-    return file;
-  }
-
   loadStore() {
-    String saveFileString = localFile.readAsStringSync();
+    String saveFileString = FilesUtils.readSaveFileAsString();
     if (saveFileString.isEmpty) {
-      _store = {};
+      _store = SplayTreeMap();
     } else {
-      _store = (jsonDecode(saveFileString) as Map)
+      Map<String, UserModel> decodedMap = (jsonDecode(saveFileString) as Map)
           .map((key, value) => MapEntry(key, UserModel.fromJson(value)));
+      _store = SplayTreeMap.from(decodedMap);
+      
     }
   }
 
   void saveStore() {
-    File saveFile = localFile;
-    String jsonString = jsonEncode(_store.cast<String, dynamic>());
-    saveFile.writeAsString(jsonString, encoding: utf8);
+    FilesUtils.save(_store);
   }
 
   void add(UserModel model) {
@@ -50,9 +46,10 @@ class Store {
   }
 
   /// Returns [List] of [UserModel] in sorted order according to roll number
-  List<UserModel> listOfUser() {
+  /// @params [compare] function to sort the list according to some condition
+  List<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
     List<UserModel> users = _store.values.toList();
-    users.sort((a, b) => a.rollNumber.compareTo(b.rollNumber));
+    users.sort((a, b) => compare(a, b));
     return users;
   }
 

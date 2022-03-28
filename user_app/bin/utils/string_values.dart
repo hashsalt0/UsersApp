@@ -20,13 +20,19 @@ class StringValues {
   static const agePrompt = "Enter $age";
   static const addressPrompt = "Enter $address";
   static const rollNumberPrompt = "Enter $rollNumber";
-  static const coursesPrompt = "Enter Number of $courses";
+
+
+  static String displayUserMenuSortByText = "Enter feild name to sortby ";
+  static String displayUserMenuSortAscendingChoice = "Sort By Ascending Order";
+  static String displayUserMenuSortDescendingChoice = "Sort By Descending Order";
+
+  static get coursesPrompt => "Enter four $courses from  ${Course.values.map((e) {e.name;})}";
 
   static const addUserMenuSucess = "Sucessfully created user.";
 
   static const rollNumberNotFound = "$rollNumber is not found.";
   
-  static get coursesEntryPrompt => "Enter $courses of values ${Course.values}";
+  static const coursesEntryPrompt = "Enter $courses of value";
 
   static const fullNameError = "Invalid Full  $name ";
   static const ageError = "Invalid $age";
@@ -40,6 +46,7 @@ class StringValues {
   static const addressSerial = "ad";
   static const rollNumberSerial = "r";
   static const coursesSerial = "c";
+  static String displayUserMenuSortBySerial = "d";
 
   static get lineBreak => '-' * stdout.terminalColumns;
 }
