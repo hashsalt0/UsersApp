@@ -13,21 +13,26 @@ import '../base/single_value_field.dart';
 
 /// Add user menu
 class AddUserMenu extends Entry {
-  
   final List<Field> _fields = [
-    SingleValueField<String>(StringValues.firstNameSerial, StringValues.firstNamePrompt, Utils.castToString, Validations.firstNameValidation),
-    SingleValueField<String>(StringValues.secondNameSerial, StringValues.secondNamePrompt, Utils.castToString, Validations.secondNameValidation),
+    SingleValueField<String>(
+        StringValues.firstNameSerial,
+        StringValues.firstNamePrompt,
+        Utils.castToString,
+        Validations.firstNameValidation),
+    SingleValueField<String>(
+        StringValues.secondNameSerial,
+        StringValues.secondNamePrompt,
+        Utils.castToString,
+        Validations.secondNameValidation),
     SingleValueField<String>(StringValues.addressSerial,
         StringValues.addressPrompt, (s) => s, Validations.addressValidation),
     SingleValueField<int>(StringValues.ageSerial, StringValues.agePrompt,
         Utils.castToInt, Validations.ageValidation),
-        
     SingleValueField<int>(
         StringValues.rollNumberSerial,
         StringValues.rollNumberPrompt,
         Utils.castToInt,
         Validations.rollNumberValidation),
-
     MultiValueField<Course>(
         StringValues.coursesSerial,
         StringValues.coursesPrompt,
@@ -35,11 +40,10 @@ class AddUserMenu extends Entry {
         Config.courseEntry,
         Utils.castToCourse,
         Validations.coursesValidation)
-
   ];
 
   AddUserMenu() : super(StringValues.addUserMenuText) {
-    for(var field in _fields){
+    for (var field in _fields) {
       addField(field);
     }
   }

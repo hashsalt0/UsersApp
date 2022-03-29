@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import '../model/course.dart';
+import 'config.dart';
 
 class StringValues {
   static const unknownValue = "unknown";
@@ -27,7 +28,7 @@ class StringValues {
   static String displayUserMenuSortAscendingChoice = "Sort By Ascending Order";
   static String displayUserMenuSortDescendingChoice = "Sort By Descending Order";
   
-  static String get coursesPrompt => "Enter four $courses from  ${Course.values.map((e) => e.name)}";
+  static String get coursesPrompt => "Enter ${Config.courseEntry} $courses from  ${Course.values.map((e) => e.name)}";
 
   static const addUserMenuSucess = "Sucessfully created user.";
 

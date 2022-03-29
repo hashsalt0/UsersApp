@@ -1,5 +1,6 @@
 import '../../exceptions/input_exception.dart';
 import '../../utils/logger.dart';
+import '../../utils/utils.dart';
 
 abstract class Field<T> {
   final String name;
@@ -14,18 +15,6 @@ abstract class Field<T> {
 
   /// catches all the [InputException] and logs it according to the log level.
   bool catchError(Function block) {
-    try {
-      block();
-      return true;
-    } on InputException catch (e, stackTrace) {
-      Log.help(e.displayMessage);
-      Log.help(e.errorMessage);
-      Log.debug(e);
-      Log.debug(stackTrace);
-    } catch (e, stackTrace) {
-      Log.debug(e);
-      Log.debug(stackTrace);
-    }
-    return false;
+    return Utils.catchError(block);
   }
 }

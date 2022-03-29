@@ -1,7 +1,9 @@
 import '../exceptions/cast_exception.dart';
+import '../exceptions/input_exception.dart';
 import '../menu/base/field.dart';
 import '../model/course.dart';
 import '../model/user_model.dart';
+import 'logger.dart';
 import 'string_values.dart';
 
 class Utils {
@@ -9,7 +11,10 @@ class Utils {
 
   static UserModel fromFeildMap(Map<String, Field> map) {
     var transformedMap = map.map((key, value) => MapEntry(key, value.value));
-    transformedMap.putIfAbsent(StringValues.fullNameSerial, () => "${transformedMap[StringValues.firstNameSerial]} ${transformedMap[StringValues.secondNameSerial]}");
+    transformedMap.putIfAbsent(
+        StringValues.fullNameSerial,
+        () =>
+            "${transformedMap[StringValues.firstNameSerial]} ${transformedMap[StringValues.secondNameSerial]}");
     final deserializedUserModel = UserModel.fromJson(transformedMap);
     return deserializedUserModel;
   }
@@ -23,6 +28,22 @@ class Utils {
     } catch (e) {
       throw CastException("${StringValues.coursesError} $text");
     }
+  }
+
+  static bool catchError(Function block) {
+    try {
+      block();
+      return true;
+    } on InputException catch (e, stackTrace) {
+      Log.help(e.displayMessage);
+      Log.help(e.errorMessage);
+      Log.debug(e);
+      Log.debug(stackTrace);
+    } catch (e, stackTrace) {
+      Log.debug(e);
+      Log.debug(stackTrace);
+    }
+    return false;
   }
 
   static int castToInt(String? text) {
