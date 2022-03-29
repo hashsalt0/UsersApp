@@ -16,7 +16,8 @@ class StringValues {
   static const rollNumber = "Roll Number";
   static const courses = "courses";
 
-  static const fullNamePrompt = "Enter Full $name ";
+  static const firstNamePrompt = "Enter First $name ";
+  static const secondNamePrompt = "Enter Second $name ";
   static const agePrompt = "Enter $age";
   static const addressPrompt = "Enter $address";
   static const rollNumberPrompt = "Enter $rollNumber";
@@ -34,14 +35,13 @@ class StringValues {
   
   static const coursesEntryPrompt = "Enter $courses of value";
 
-  static const fullNameError = "Invalid Full  $name ";
-  static const ageError = "Invalid $age";
-  static const addressError = "Invalid $address";
   static const rollNumberError = "Invalid $rollNumber entered, enter an integer value";
   static get coursesError => "Invalid $courses entered choose from ${Course.values.map((e) => e.name)}";
 
   // serial values should be unique 
-  static const fullNameSerial = "f";
+  static const firstNameSerial = "f";
+  static const secondNameSerial = "s";
+  static const fullNameSerial = "fs";
   static const ageSerial = "ag";
   static const addressSerial = "ad";
   static const rollNumberSerial = "r";
