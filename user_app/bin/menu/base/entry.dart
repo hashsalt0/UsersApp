@@ -14,7 +14,7 @@ class Entry extends Menu {
 
   /// add a [Field] that reads a value from command line when menu is executed
   void addField<T>(Field<T> newField) {
-    fields.putIfAbsent(name, () => newField);
+    fields.putIfAbsent(newField.name, () => newField);
   }
 
   /// Reading all the [Field]  in [fields]
