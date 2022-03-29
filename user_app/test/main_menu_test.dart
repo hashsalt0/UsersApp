@@ -8,6 +8,7 @@ void main() {
   test('testing add user and saving to disk', () {
     var input = [
       '1',
+      'Snehil',
       'snehil',
       'patna',
       '10',
@@ -18,6 +19,7 @@ void main() {
       'D',
       '4',
       '1',
+      'Ajay',
       'ajay',
       'patna',
       '10',
@@ -32,14 +34,14 @@ void main() {
 
     Input.mock = () {
       if (input.moveNext()) return input.current;
-      return "blank";
+      return "5";
     };
     List<String> output = [];
     Log.mock = (Object? got) {
       output.add(got!.toString());
     };
     UserAppLooper().run();
-    bool toTest = output.contains("Sucessfully added model to the storage.");
+    bool toTest = output.contains("[33mSucessfully saved store to disk.[0m");
     expect(toTest, true);
   }, timeout: Timeout.parse("1s"));
   test('delete test', () {
