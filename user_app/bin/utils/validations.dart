@@ -14,8 +14,16 @@ import 'store.dart';
 /// Validations rules for [Field] throws [InputException]
 class Validations {
   /// Validations rules for name [Field] throws [EmptyInputException]
-  static bool nameValidation(String? value) {
-    if (value!.isEmpty) throw EmptyInputException("Name cannot be empty");
+  static bool firstNameValidation(String? value) {
+    if (value == null) return false;
+    if (value.isEmpty) throw EmptyInputException("Name cannot be empty");
+    if (RegExp(r'^[A-Z][A-Za-z]+$').hasMatch(value) == false) throw InvalidInputException("First name should begain with a capital letter");
+    return true;
+  }
+
+  static bool secondNameValidation(String? value) {
+    if (value == null) return false;
+    if (value.isEmpty) throw EmptyInputException("Name cannot be empty");
     return true;
   }
 
@@ -38,7 +46,8 @@ class Validations {
 
   /// Validations rules for address [Field] throws [InputException]
   static bool addressValidation(String? value) {
-    if (value!.isEmpty) throw EmptyInputException("Address cannot be empty");
+    if (value == null) return false;
+    if (value.isEmpty) throw EmptyInputException("Address cannot be empty");
     return true;
   }
 
@@ -46,8 +55,9 @@ class Validations {
   static bool coursesValidation(
       Course? enteredValue, HashSet<Course>? container) {
     if (container == null) return false;
+    if (enteredValue == null) return false;
     if (container.contains(enteredValue)) {
-      throw CourseAlreadyAddedException(enteredValue?.toString());
+      throw CourseAlreadyAddedException(enteredValue.toString());
     }
     return true;
   }
