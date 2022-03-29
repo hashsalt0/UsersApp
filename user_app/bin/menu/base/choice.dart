@@ -41,6 +41,10 @@ class Choice extends Menu {
   void execute() {
     _displayMenu();
     // reading the choice and executing it.
+    while(catchError(_readAndExecute) == false) {}
+  }
+
+  void _readAndExecute(){
     int choice = _readChoice();
     _subMenus[choice - 1].execute();
   }
