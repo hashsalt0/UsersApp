@@ -40,7 +40,7 @@ class DisplayUserMenu extends Choice {
             e.rollNumber,
             e.age ?? "",
             e.address ?? "",
-            e.courses
+            e.courses.map((e) => e.name)
           ])
     ], headerIncluded: true, headerSeparator: '-');
     Log.verbose(output);
