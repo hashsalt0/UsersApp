@@ -20,6 +20,7 @@ class Choice extends Menu {
     });
   }
 
+  /// adds a sub menu
   void addMenu(Menu menu) {
     _subMenus.add(menu);
   }
@@ -39,6 +40,7 @@ class Choice extends Menu {
   @override
   void execute() {
     _displayMenu();
+    // reading the choice and executing it.
     int choice = _readChoice();
     _subMenus[choice - 1].execute();
   }
