@@ -7,29 +7,41 @@ import '../../utils/string_values.dart';
 import '../../utils/utils.dart';
 import '../../utils/validations.dart';
 import '../base/entry.dart';
+import '../base/field.dart';
+import '../base/multi_value_field.dart';
+import '../base/single_value_field.dart';
 
 /// Add user menu
 class AddUserMenu extends Entry {
-  AddUserMenu() : super(StringValues.addUserMenuText) {
-    addSingleValueField<String>(StringValues.fullNameSerial,
-        StringValues.fullNamePrompt, (s) => s, Validations.nameValidation);
-    addSingleValueField<String>(StringValues.addressSerial,
-        StringValues.addressPrompt, (s) => s, Validations.addressValidation);
-    addSingleValueField<int>(StringValues.ageSerial, StringValues.agePrompt,
-        Utils.castToInt, Validations.ageValidation);
-    addSingleValueField<int>(
+  
+  final List<Field> _fields = [
+    SingleValueField<String>(StringValues.firstNameSerial, StringValues.firstNamePrompt, Utils.castToString, Validations.firstNameValidation),
+    SingleValueField<String>(StringValues.secondNameSerial, StringValues.secondNamePrompt, Utils.castToString, Validations.secondNameValidation),
+    SingleValueField<String>(StringValues.addressSerial,
+        StringValues.addressPrompt, (s) => s, Validations.addressValidation),
+    SingleValueField<int>(StringValues.ageSerial, StringValues.agePrompt,
+        Utils.castToInt, Validations.ageValidation),
+        
+    SingleValueField<int>(
         StringValues.rollNumberSerial,
         StringValues.rollNumberPrompt,
         Utils.castToInt,
-        Validations.rollNumberValidation);
+        Validations.rollNumberValidation),
 
-    addMultiValueField<Course>(
+    MultiValueField<Course>(
         StringValues.coursesSerial,
         StringValues.coursesPrompt,
         StringValues.coursesEntryPrompt,
         Config.courseEntry,
         Utils.castToCourse,
-        Validations.coursesValidation);
+        Validations.coursesValidation)
+
+  ];
+
+  AddUserMenu() : super(StringValues.addUserMenuText) {
+    for(var field in _fields){
+      addField(field);
+    }
   }
 
   @override
