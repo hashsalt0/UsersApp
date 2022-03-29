@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'multi_value_field.dart';
 import 'menu.dart';
 import 'field.dart';
@@ -14,47 +12,16 @@ class Entry extends Menu {
 
   final Map<String, Field> fields = {};
 
-  void addSingleValueField<T>(
-      String name,
-      String message,
-      T? Function(String? text) cast,
-      bool Function(T?)? validationFunction) {
-    SingleValueField<T> newField = SingleValueField(name, message)
-      ..validate = validationFunction
-      ..cast = cast;
+  /// add a [Field] that reads a value from command line when menu is executed
+  void addField<T>(Field<T> newField) {
     fields.putIfAbsent(name, () => newField);
   }
 
-  void addMultiValueField<T>(
-      String name,
-      String message,
-      String entryMessage,
-      int entryCount,
-      T? Function(String? text) cast,
-      bool Function(T?, HashSet<T>?)? validationFunction) {
-    MultiValueField<T> newField = MultiValueField(name, message, entryMessage, null, entryCount)
-      ..validate = validationFunction
-      ..cast = cast;
-    fields.putIfAbsent(name, () => newField);
-  }
-
-void addMultiValueFieldWithDifferentMessages<T>(
-      String name,
-      String message,
-      List<String> entryMessages,
-      int entryCount,
-      T? Function(String? text) cast,
-      bool Function(T?, HashSet<T>?)? validationFunction) {
-    MultiValueField<T> newField = MultiValueField(name, message, null, entryMessages, entryCount)
-      ..validate = validationFunction
-      ..cast = cast;
-    fields.putIfAbsent(name, () => newField);
-  }
-
+  /// Reading all the [Field]  in [fields]
   @override
   void execute() {
-      for (var subMenu in fields.values) { 
-        subMenu.readValue(); 
-      }
+    for (var field in fields.values) {
+      field.readValue();
+    }
   }
 }
