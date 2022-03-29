@@ -12,9 +12,10 @@ import '../bin/utils/string_values.dart';
 import '../bin/utils/validations.dart';
 
 void main(){
+  Store.instance.loadStore();
   test('Name Vaildation Test', () {
-    expect(() => Validations.nameValidation(""), throwsA(TypeMatcher<InputException>()));    
-    expect(Validations.nameValidation("sdji"), true);
+    expect(() => Validations.firstNameValidation(""), throwsA(TypeMatcher<InputException>()));    
+    expect(Validations.firstNameValidation("sdji"), true);
   });
   test('Age Vaildation Test', () {
     expect(() => Validations.ageValidation(-1), throwsA(TypeMatcher<InputException>()));    
@@ -31,7 +32,7 @@ void main(){
     expect(Validations.rollNumberValidation(2), true);
     Store.instance.add(UserModel.fromJson({
       StringValues.rollNumberSerial : 2,
-      StringValues.courses : [],
+      StringValues.coursesSerial : [],
     }));  
     expect(() => Validations.rollNumberValidation(2), throwsA(TypeMatcher<RollNumberAlreadyExistsException>()));
   });
