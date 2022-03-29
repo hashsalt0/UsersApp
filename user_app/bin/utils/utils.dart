@@ -9,6 +9,7 @@ class Utils {
 
   static UserModel fromFeildMap(Map<String, Field> map) {
     var transformedMap = map.map((key, value) => MapEntry(key, value.value));
+    transformedMap.putIfAbsent(StringValues.fullNameSerial, () => "${transformedMap[StringValues.firstNameSerial]} ${transformedMap[StringValues.secondNameSerial]}");
     final deserializedUserModel = UserModel.fromJson(transformedMap);
     return deserializedUserModel;
   }
@@ -18,7 +19,7 @@ class Utils {
       throw CastException("${StringValues.coursesError} $text");
     }
     try {
-      return Course.values.byName(text);
+      return Course.values.byName(text.toUpperCase());
     } catch (e) {
       throw CastException("${StringValues.coursesError} $text");
     }
