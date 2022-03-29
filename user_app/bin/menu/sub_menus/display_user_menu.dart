@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dolumns/dolumns.dart';
 
 import '../../model/user_model.dart';
@@ -59,7 +57,6 @@ class DisplayMenuSortChoice extends Choice {
     addMenu(DisplayMenuSortChoiceOrder(
         "Descending", (a, b) => -compare(a, b), displayUserMenu));
   }
-  
 }
 
 class DisplayMenuSortChoiceOrder extends Menu {

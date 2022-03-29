@@ -4,14 +4,19 @@ import '../../utils/string_values.dart';
 import '../../utils/utils.dart';
 import '../../utils/validations.dart';
 import '../base/entry.dart';
+import '../base/field.dart';
+import '../base/single_value_field.dart';
 
 class DeleteUserMenu extends Entry {
-  DeleteUserMenu() : super(StringValues.deleteUserMenuText) {
-    addSingleValueField<int>(
+  final Field<int> _field =   SingleValueField<int>(
         StringValues.rollNumberSerial,
         StringValues.rollNumberPrompt,
         Utils.castToInt,
         Validations.rollNumberExistsValidation);
+  
+
+  DeleteUserMenu() : super(StringValues.deleteUserMenuText) {
+    addField(_field);
   }
 
   /// Deletes the user if entry for the roll number is found. 
