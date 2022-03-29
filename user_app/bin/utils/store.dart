@@ -47,9 +47,10 @@ class Store {
 
   /// Returns [List] of [UserModel] in sorted order according to roll number
   /// @params [compare] function to sort the list according to some condition
-  Iterable<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
-    SplayTreeMap<UserModel, UserModel> reorderedMap = SplayTreeMap.from(_store, compare);
-    return reorderedMap.values;
+  List<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
+    List<UserModel> listOfUser = _store.values.toList();
+    listOfUser.sort(compare);
+    return listOfUser;
   }
 
   void remove(int rollNumber) {
