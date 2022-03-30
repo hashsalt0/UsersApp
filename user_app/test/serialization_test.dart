@@ -20,23 +20,37 @@ void main() {
       Const.ageSerial: 10
     });
     Map<String, Field> map = {
-      Const.rollNumberSerial:
-          SingleValueField<int>("", "", Utils.castToInt, (e) => true)
-            ..value = 1,
-      Const.addressSerial:
-          SingleValueField<String>("", "", Utils.castToString, (e) => true)
-            ..value = "john",
-      Const.secondNameSerial:
-          SingleValueField<String>("", "", Utils.castToString, (e) => true)
-            ..value = "swanson",
-      Const.firstNameSerial:
-          SingleValueField<String>("", "", Utils.castToString, (e) => true)
-            ..value = "ron",
-      Const.ageSerial:
-          SingleValueField<int>("", "", Utils.castToInt, (e) => true)
-            ..value = 10,
+      Const.rollNumberSerial: SingleValueField<int>(
+          name: "", message: "", cast: Utils.castToInt, validate: (e) => true)
+        ..value = 1,
+      Const.addressSerial: SingleValueField<String>(
+          name: "",
+          message: "",
+          cast: Utils.castToString,
+          validate: (e) => true)
+        ..value = "john",
+      Const.secondNameSerial: SingleValueField<String>(
+          name: "",
+          message: "",
+          cast: Utils.castToString,
+          validate: (e) => true)
+        ..value = "swanson",
+      Const.firstNameSerial: SingleValueField<String>(
+          name: "",
+          message: "",
+          cast: Utils.castToString,
+          validate: (e) => true)
+        ..value = "ron",
+      Const.ageSerial: SingleValueField<int>(
+          name: "", message: "", cast: Utils.castToInt, validate: (e) => true)
+        ..value = 10,
       Const.coursesSerial: MultiValueField<Course>(
-          "", "", "", 1, Utils.castToCourse, (e, x) => true)
+          name: "",
+          message: "",
+          entryMessage: "",
+          entryCount: 1,
+          cast: Utils.castToCourse,
+          validate: (e, x) => true)
         ..value = HashSet.of([Course.A, Course.B]),
     };
     UserModel toTest = Utils.fromFeildMap(map);

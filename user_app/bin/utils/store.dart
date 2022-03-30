@@ -46,8 +46,8 @@ class Store {
 
   /// Returns [Set] of [UserModel] in sorted order according to roll number
   /// @params [compare] function to sort the list according to some condition
-  Set<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
-    return SplayTreeSet.from(_store, compare);
+  Set<UserModel> listOfUser(int Function({required UserModel a, required UserModel b}) compare) {
+    return SplayTreeSet.from(_store, (a, b) =>  compare(a: a, b: b));
   }
 
   void remove(int rollNumber) {

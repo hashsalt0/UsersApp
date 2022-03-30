@@ -10,10 +10,10 @@ import '../base/single_value_field.dart';
 
 class DeleteUserMenu extends Entry {
   final Field<int> _field =   SingleValueField<int>(
-        Const.rollNumberSerial,
-        StringValues.rollNumberPrompt,
-        Utils.castToInt,
-        Validations.rollNumberExistsValidation);
+        name: Const.rollNumberSerial,
+        message: StringValues.rollNumberPrompt,
+        cast: Utils.castToInt,
+        validate: Validations.rollNumberExistsValidation);
   
 
   DeleteUserMenu() : super(StringValues.deleteUserMenuText) {

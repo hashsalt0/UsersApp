@@ -29,7 +29,8 @@ void main() {
       Const.ageSerial: 10
     });
     var modelRead = Store.instance
-        .listOfUser((a, b) => a.fullName?.compareTo(b.fullName ?? "") ?? -1)
+        .listOfUser(({required UserModel a, required UserModel b}) =>
+            a.fullName?.compareTo(b.fullName ?? "") ?? 0)
         .first;
     expect(modelRead == model, true);
   });

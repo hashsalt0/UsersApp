@@ -16,31 +16,37 @@ import '../base/single_value_field.dart';
 class AddUserMenu extends Entry {
   final List<Field> _fields = [
     SingleValueField<String>(
-        Const.firstNameSerial,
-        StringValues.firstNamePrompt,
-        Utils.castToString,
-        Validations.firstNameValidation),
+        name: Const.firstNameSerial,
+        message: StringValues.firstNamePrompt,
+        cast: Utils.castToString,
+        validate: Validations.firstNameValidation),
     SingleValueField<String>(
-        Const.secondNameSerial,
-        StringValues.secondNamePrompt,
-        Utils.castToString,
-        Validations.secondNameValidation),
-    SingleValueField<String>(Const.addressSerial, StringValues.addressPrompt,
-        (s) => s, Validations.addressValidation),
-    SingleValueField<int>(Const.ageSerial, StringValues.agePrompt,
-        Utils.castToInt, Validations.ageValidation),
+        name: Const.secondNameSerial,
+        message: StringValues.secondNamePrompt,
+        cast: Utils.castToString,
+        validate: Validations.secondNameValidation),
+    SingleValueField<String>(
+        name: Const.addressSerial,
+        message: StringValues.addressPrompt,
+        cast: (s) => s,
+        validate: Validations.addressValidation),
     SingleValueField<int>(
-        Const.rollNumberSerial,
-        StringValues.rollNumberPrompt,
-        Utils.castToInt,
-        Validations.rollNumberValidation),
+        name: Const.ageSerial,
+        message: StringValues.agePrompt,
+        cast: Utils.castToInt,
+        validate: Validations.ageValidation),
+    SingleValueField<int>(
+        name: Const.rollNumberSerial,
+        message: StringValues.rollNumberPrompt,
+        cast: Utils.castToInt,
+        validate: Validations.rollNumberValidation),
     MultiValueField<Course>(
-        Const.coursesSerial,
-        StringValues.coursesPrompt,
-        StringValues.coursesEntryPrompt,
-        Config.courseEntry,
-        Utils.castToCourse,
-        Validations.coursesValidation)
+        name: Const.coursesSerial,
+        message: StringValues.coursesPrompt,
+        entryMessage: StringValues.coursesEntryPrompt,
+        entryCount: Config.courseEntry,
+        cast: Utils.castToCourse,
+        validate: Validations.coursesValidation)
   ];
 
   AddUserMenu() : super(StringValues.addUserMenuText) {

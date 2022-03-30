@@ -5,7 +5,7 @@ class InputException implements Exception {
   final String errorMessage;
   final String displayMessage;
 
-  InputException(this.errorMessage, this.displayMessage);
+  InputException(this.errorMessage, [this.displayMessage = ""]);
 
   @override
   String toString() {

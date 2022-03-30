@@ -20,9 +20,16 @@ class MultiValueField<T> extends Field<HashSet<T>> {
   /// minimum and maximum number of inputs that are required.
   final int _entryCount;
 
-  MultiValueField(String name, String message, this._entryMessage,
-      this._entryCount, this.cast, this.validate)
-      : super(name, message) {
+  MultiValueField(
+      {required String name,
+      required String message,
+      required String entryMessage,
+      required int entryCount,
+      required this.cast,
+      this.validate})
+      : _entryMessage = entryMessage,
+        _entryCount = entryCount,
+        super(name: name, message: message) {
     value = HashSet();
   }
 

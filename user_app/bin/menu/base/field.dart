@@ -1,4 +1,6 @@
 
+
+
 abstract class Field<T> {
   final String name;
   // can be protected but no option in dart
@@ -6,7 +8,7 @@ abstract class Field<T> {
 
   late T? value;
 
-  Field(this.name, this.message);
+  Field({required this.name, required this.message});
 
   T? readValue();
 }

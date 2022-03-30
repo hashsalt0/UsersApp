@@ -1,5 +1,4 @@
 import 'package:dolumns/dolumns.dart';
-
 import '../../model/user_model.dart';
 import '../../utils/logger.dart';
 import '../../utils/store.dart';
@@ -8,17 +7,29 @@ import '../base/choice.dart';
 import '../base/menu.dart';
 
 class DisplayUserMenu extends Choice {
-  late int Function(UserModel a, UserModel b) compare;
+  late int Function({required UserModel a, required UserModel b}) compare;
 
   DisplayUserMenu() : super(StringValues.displayUserMenuText) {
-    addMenu(DisplayMenuSortChoice(StringValues.name,
-        (a, b) => a.fullName!.compareTo(b.fullName ?? ""), this));
-    addMenu(DisplayMenuSortChoice(StringValues.rollNumber,
-        (a, b) => a.rollNumber.compareTo(b.rollNumber), this));
     addMenu(DisplayMenuSortChoice(
-        StringValues.age, (a, b) => a.age!.compareTo(b.age ?? 0), this));
-    addMenu(DisplayMenuSortChoice(StringValues.address,
-        (a, b) => a.address!.compareTo(b.address ?? ""), this));
+        StringValues.name,
+        ({required UserModel a, required UserModel b}) =>
+            a.fullName?.compareTo(b.fullName ?? "") ?? 0,
+        this));
+    addMenu(DisplayMenuSortChoice(
+        StringValues.rollNumber,
+        ({required UserModel a, required UserModel b}) =>
+            a.rollNumber.compareTo(b.rollNumber),
+        this));
+    addMenu(DisplayMenuSortChoice(
+        StringValues.age,
+        ({required UserModel a, required UserModel b}) =>
+            a.age?.compareTo(b.age ?? 0) ?? 0,
+        this));
+    addMenu(DisplayMenuSortChoice(
+        StringValues.address,
+        ({required UserModel a, required UserModel b}) =>
+            a.address?.compareTo(b.address ?? "") ?? 0,
+        this));
   }
 
   @override
@@ -50,20 +61,23 @@ class DisplayUserMenu extends Choice {
 class DisplayMenuSortChoice extends Choice {
   DisplayMenuSortChoice(
       String name,
-      int Function(UserModel a, UserModel b) compare,
+      int Function({required UserModel a, required UserModel b}) ascendingCompare,
       DisplayUserMenu displayUserMenu)
       : super(name) {
-    addMenu(DisplayMenuSortChoiceOrder("Ascending", compare, displayUserMenu));
+    addMenu(DisplayMenuSortChoiceOrder(name: "Ascending", compare: ascendingCompare, displayUserMenu: displayUserMenu));
     addMenu(DisplayMenuSortChoiceOrder(
-        "Descending", (a, b) => -compare(a, b), displayUserMenu));
+        name: "Descending",
+        compare: ({required UserModel a, required UserModel b}) => -ascendingCompare(a: a, b: b),
+        displayUserMenu: displayUserMenu));
   }
 }
 
 class DisplayMenuSortChoiceOrder extends Menu {
-  int Function(UserModel a, UserModel b) compare;
+
+  int Function({required UserModel a, required UserModel b}) compare;
   DisplayUserMenu displayUserMenu;
 
-  DisplayMenuSortChoiceOrder(String name, this.compare, this.displayUserMenu)
+  DisplayMenuSortChoiceOrder({required String name, required this.compare, required this.displayUserMenu})
       : super(name);
 
   @override

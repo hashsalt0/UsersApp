@@ -7,8 +7,8 @@ import 'entry.dart';
 /// A Type of [Field] for [Entry] classes. It accepts a [T] value.
 
 class SingleValueField<T> extends Field<T> {
-  SingleValueField(String name, String message, this.cast, this.validate)
-      : super(name, message);
+  SingleValueField({required String name, required String message, required this.cast, required this.validate})
+      : super(name: name, message: message);
 
   /// validate function (not necessary to provide)
   bool Function(T? castedValue) validate;
