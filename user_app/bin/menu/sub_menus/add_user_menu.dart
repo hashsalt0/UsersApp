@@ -19,12 +19,12 @@ class AddUserMenu extends Entry {
         name: Const.firstNameSerial,
         message: StringValues.firstNamePrompt,
         cast: Utils.castToString,
-        validate: Validations.firstNameValidation),
+        validate: Validations.nameValidation),
     SingleValueField<String>(
         name: Const.secondNameSerial,
         message: StringValues.secondNamePrompt,
         cast: Utils.castToString,
-        validate: Validations.secondNameValidation),
+        validate: Validations.nameValidation),
     SingleValueField<String>(
         name: Const.addressSerial,
         message: StringValues.addressPrompt,

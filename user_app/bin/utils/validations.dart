@@ -14,16 +14,10 @@ import 'store.dart';
 /// Validations rules for [Field] throws [InputException]
 class Validations {
   /// Validations rules for name [Field] throws [EmptyInputException]
-  static bool firstNameValidation(String? value) {
+  static bool nameValidation(String? value) {
     if (value == null) return false;
     if (value.isEmpty) throw EmptyInputException("Name cannot be empty");
     if (RegExp(r'^[A-Z][A-Za-z]+$').hasMatch(value) == false) throw InvalidInputException("First name should begain with a capital letter");
-    return true;
-  }
-
-  static bool secondNameValidation(String? value) {
-    if (value == null) return false;
-    if (value.isEmpty) throw EmptyInputException("Name cannot be empty");
     return true;
   }
 

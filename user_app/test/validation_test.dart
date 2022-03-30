@@ -14,9 +14,9 @@ import '../bin/utils/validations.dart';
 void main() {
   Store.instance.loadStore();
   test('Name Vaildation Test', () {
-    expect(() => Validations.firstNameValidation(""),
+    expect(() => Validations.nameValidation(""),
         throwsA(TypeMatcher<InputException>()));
-    expect(Validations.firstNameValidation("sdji"), true);
+    expect(Validations.nameValidation("sdji"), true);
   });
   test('Age Vaildation Test', () {
     expect(() => Validations.ageValidation(-1),
