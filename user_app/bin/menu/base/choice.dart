@@ -2,6 +2,7 @@ import '../../exceptions/invalid_choice_exception.dart';
 import '../../utils/input.dart';
 import '../../utils/logger.dart';
 import '../../utils/string_values.dart';
+import '../../utils/utils.dart';
 import 'menu.dart';
 
 /// Type of [Menu] that has a list of sub menus and it accepts a choice to be  
@@ -41,7 +42,7 @@ class Choice extends Menu {
   void execute() {
     _displayMenu();
     // reading the choice and executing it.
-    while(catchError(_readAndExecute) == false) {}
+    while(Utils.catchError(_readAndExecute) == false) {}
   }
 
   void _readAndExecute(){

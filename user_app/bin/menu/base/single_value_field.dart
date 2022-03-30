@@ -1,5 +1,6 @@
 import '../../utils/input.dart';
 import '../../utils/logger.dart';
+import '../../utils/utils.dart';
 import 'field.dart';
 import 'entry.dart';
 
@@ -26,6 +27,6 @@ class SingleValueField<T> extends Field<T> {
   }
 
   bool _validateTry(String? line) {
-    return catchError(() => {validate(cast(line))});
+    return Utils.catchError(() => {validate(cast(line))});
   }
 }

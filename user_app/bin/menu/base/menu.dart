@@ -14,8 +14,4 @@ abstract class Menu {
 
   ///  this function is where all the menu operations are defined.
   void execute();
-
-  bool catchError(Function block) {
-    return Utils.catchError(block);
-  }
 }

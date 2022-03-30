@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import '../../utils/input.dart';
 import '../../utils/logger.dart';
+import '../../utils/utils.dart';
 import 'field.dart';
 import 'entry.dart';
 import '../../utils/validations.dart';
@@ -60,6 +61,6 @@ class MultiValueField<T> extends Field<HashSet<T>> {
   /// Handles all [InputException] that are recived while executing validate
   /// function.
   bool _validateTry(String? value) {
-    return catchError(() => {validate!(cast(value), this.value)});
+    return Utils.catchError(() => {validate!(cast(value), this.value)});
   }
 }
