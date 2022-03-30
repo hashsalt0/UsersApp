@@ -1,3 +1,4 @@
+import '../../utils/const.dart';
 import '../../utils/logger.dart';
 import '../../utils/store.dart';
 import '../../utils/string_values.dart';
@@ -9,7 +10,7 @@ import '../base/single_value_field.dart';
 
 class DeleteUserMenu extends Entry {
   final Field<int> _field =   SingleValueField<int>(
-        StringValues.rollNumberSerial,
+        Const.rollNumberSerial,
         StringValues.rollNumberPrompt,
         Utils.castToInt,
         Validations.rollNumberExistsValidation);
@@ -31,7 +32,7 @@ class DeleteUserMenu extends Entry {
   @override
   void execute() {
     super.execute();
-    int rollNumber = fields[StringValues.rollNumberSerial]!.value as int;
+    int rollNumber = fields[Const.rollNumberSerial]!.value as int;
     delete(rollNumber);
     Log.help("Deleted user having roll number - $rollNumber");
   }

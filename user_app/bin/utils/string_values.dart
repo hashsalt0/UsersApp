@@ -39,15 +39,6 @@ class StringValues {
   static const rollNumberError = "Invalid $rollNumber entered, enter an integer value";
   static get coursesError => "Invalid $courses entered choose from ${Course.values.map((e) => e.name)}";
 
-  // serial values should be unique 
-  static const firstNameSerial = "f";
-  static const secondNameSerial = "s";
-  static const fullNameSerial = "fs";
-  static const ageSerial = "ag";
-  static const addressSerial = "ad";
-  static const rollNumberSerial = "r";
-  static const coursesSerial = "c";
-  static String displayUserMenuSortBySerial = "d";
 
   static get lineBreak => '-' * stdout.terminalColumns;
 }

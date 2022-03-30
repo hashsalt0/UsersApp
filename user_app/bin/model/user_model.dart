@@ -1,3 +1,4 @@
+import '../utils/const.dart';
 import '../utils/string_values.dart';
 import '../utils/utils.dart';
 import 'course.dart';
@@ -10,19 +11,19 @@ class UserModel {
   Set<Course> courses;
 
   UserModel.fromJson(Map json)
-      : fullName = json[StringValues.fullNameSerial],
-        age = json[StringValues.ageSerial],
-        address = json[StringValues.addressSerial],
-        rollNumber = json[StringValues.rollNumberSerial],
-        courses = Utils.getCourseSet(json[StringValues.coursesSerial]);
+      : fullName = json[Const.fullNameSerial],
+        age = json[Const.ageSerial],
+        address = json[Const.addressSerial],
+        rollNumber = json[Const.rollNumberSerial],
+        courses = Utils.getCourseSet(json[Const.coursesSerial]);
 
 
   Map toJson() => {
-        StringValues.fullNameSerial: fullName,
-        StringValues.ageSerial: age,
-        StringValues.addressSerial: address,
-        StringValues.rollNumberSerial: rollNumber,
-        StringValues.coursesSerial: courses.map((e) => e.name).toList()
+        Const.fullNameSerial: fullName,
+        Const.ageSerial: age,
+        Const.addressSerial: address,
+        Const.rollNumberSerial: rollNumber,
+        Const.coursesSerial: courses.map((e) => e.name).toList()
       };
 
     

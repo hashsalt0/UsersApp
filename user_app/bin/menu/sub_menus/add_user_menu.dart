@@ -1,6 +1,7 @@
 import '../../model/course.dart';
 import '../../model/user_model.dart';
 import '../../utils/config.dart';
+import '../../utils/const.dart';
 import '../../utils/logger.dart';
 import '../../utils/store.dart';
 import '../../utils/string_values.dart';
@@ -15,26 +16,26 @@ import '../base/single_value_field.dart';
 class AddUserMenu extends Entry {
   final List<Field> _fields = [
     SingleValueField<String>(
-        StringValues.firstNameSerial,
+        Const.firstNameSerial,
         StringValues.firstNamePrompt,
         Utils.castToString,
         Validations.firstNameValidation),
     SingleValueField<String>(
-        StringValues.secondNameSerial,
+        Const.secondNameSerial,
         StringValues.secondNamePrompt,
         Utils.castToString,
         Validations.secondNameValidation),
-    SingleValueField<String>(StringValues.addressSerial,
-        StringValues.addressPrompt, (s) => s, Validations.addressValidation),
-    SingleValueField<int>(StringValues.ageSerial, StringValues.agePrompt,
+    SingleValueField<String>(Const.addressSerial, StringValues.addressPrompt,
+        (s) => s, Validations.addressValidation),
+    SingleValueField<int>(Const.ageSerial, StringValues.agePrompt,
         Utils.castToInt, Validations.ageValidation),
     SingleValueField<int>(
-        StringValues.rollNumberSerial,
+        Const.rollNumberSerial,
         StringValues.rollNumberPrompt,
         Utils.castToInt,
         Validations.rollNumberValidation),
     MultiValueField<Course>(
-        StringValues.coursesSerial,
+        Const.coursesSerial,
         StringValues.coursesPrompt,
         StringValues.coursesEntryPrompt,
         Config.courseEntry,

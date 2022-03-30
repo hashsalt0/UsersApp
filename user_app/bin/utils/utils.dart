@@ -3,6 +3,7 @@ import '../exceptions/input_exception.dart';
 import '../menu/base/field.dart';
 import '../model/course.dart';
 import '../model/user_model.dart';
+import 'const.dart';
 import 'logger.dart';
 import 'string_values.dart';
 
@@ -12,9 +13,9 @@ class Utils {
   static UserModel fromFeildMap(Map<String, Field> map) {
     var transformedMap = map.map((key, value) => MapEntry(key, value.value));
     transformedMap.putIfAbsent(
-        StringValues.fullNameSerial,
+        Const.fullNameSerial,
         () =>
-            "${transformedMap[StringValues.firstNameSerial]} ${transformedMap[StringValues.secondNameSerial]}");
+            "${transformedMap[Const.firstNameSerial]} ${transformedMap[Const.secondNameSerial]}");
     final deserializedUserModel = UserModel.fromJson(transformedMap);
     return deserializedUserModel;
   }
