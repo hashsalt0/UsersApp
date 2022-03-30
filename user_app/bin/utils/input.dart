@@ -6,10 +6,6 @@ class Input {
   static String? Function()? mock;
 
   static String? readLine() {
-    if(mock != null){
-      return mock!();
-    }else{
-      return stdin.readLineSync(encoding: utf8);
-    } 
+    return mock?.call() ?? stdin.readLineSync(encoding: utf8);
   }
 }

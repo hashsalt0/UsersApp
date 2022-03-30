@@ -5,12 +5,8 @@ import 'log_colors.dart';
 class Log {
   static Function(Object? text)? mock;
 
-  static void _printHelp(Object? text){
-    if(mock != null){
-        mock!(text);
-    }else{
-      print(text);
-    }
+  static void _printHelp(Object? text) {
+    return mock?.call(text) ?? print(text);
   }
 
   static void error(Object? text) {
@@ -26,7 +22,8 @@ class Log {
   }
 
   static void debug(Object? text) {
-    if(Config.env == Config.envDevelopment) _printHelp("${LogColors.cyan}$text${LogColors.reset}");
+    if (Config.env == Config.envDevelopment)
+      _printHelp("${LogColors.cyan}$text${LogColors.reset}");
   }
 
   static void help(Object? text) {
