@@ -6,7 +6,7 @@ import 'files_utils.dart';
 
 class Store {
   // json encoder only support string map
-  late final SplayTreeMap<String, UserModel> _store;
+  late final SplayTreeSet<UserModel> _store;
 
   // Flag to state weather the application is running or not.
   bool isRunning = true;
@@ -23,11 +23,10 @@ class Store {
   loadStore() {
     String saveFileString = FilesUtils.readSaveFileAsString();
     if (saveFileString.isEmpty) {
-      _store = SplayTreeMap();
+      _store = SplayTreeSet();
     } else {
-      Map<String, UserModel> decodedMap = (jsonDecode(saveFileString) as Map)
-          .map((key, value) => MapEntry(key, UserModel.fromJson(value)));
-      _store = SplayTreeMap.from(decodedMap);
+      Set<UserModel> decodedSet = (jsonDecode(saveFileString) as Set).map((json) => UserModel.fromJson(json)).toSet();
+      _store = SplayTreeSet.from(decodedSet, (x, y) => x.rollNumber.compareTo(y.rollNumber));
     }
   }
 
@@ -38,19 +37,17 @@ class Store {
 
   /// add user model if it is absent.
   void add(UserModel model) {
-    _store.putIfAbsent(model.rollNumber.toString(), () => model);
+    _store.add(model);
   }
 
   bool has(int? value) {
-    return _store.containsKey(value.toString());
+    return value != null && _store.contains(UserModel.fromRollNumber(value));
   }
 
-  /// Returns [List] of [UserModel] in sorted order according to roll number
+  /// Returns [Set] of [UserModel] in sorted order according to roll number
   /// @params [compare] function to sort the list according to some condition
-  List<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
-    List<UserModel> listOfUser = _store.values.toList();
-    listOfUser.sort(compare);
-    return listOfUser;
+  Set<UserModel> listOfUser(int Function(UserModel a, UserModel b) compare) {
+    return SplayTreeSet.from(_store, compare);
   }
 
   void remove(int rollNumber) {

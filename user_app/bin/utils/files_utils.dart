@@ -22,9 +22,9 @@ class FilesUtils {
     }
   }
 
-  static void save(Map<String, UserModel> store) {
+  static void save(Set<UserModel> store) {
     File saveFile = _localFile;
-    String jsonString = jsonEncode(store.cast<String, dynamic>());
+    String jsonString = jsonEncode(store.cast<dynamic>());
     saveFile.writeAsString(jsonString, encoding: utf8);
   }
 

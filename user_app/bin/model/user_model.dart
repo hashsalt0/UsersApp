@@ -28,9 +28,13 @@ class UserModel {
     
   @override
   bool operator ==(Object other) {
-    return hashCode == other.hashCode;
+    return other is UserModel && rollNumber == other.rollNumber;
   }
 
   @override
   int get hashCode => rollNumber.hashCode;
+
+  UserModel.fromRollNumber(int value) :
+        rollNumber = value,
+        courses = {};
 }
