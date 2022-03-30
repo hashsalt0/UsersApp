@@ -21,13 +21,7 @@ class Store {
 
   /// Reads the store file and loads it into memory
   loadStore() {
-    String saveFileString = FilesUtils.readSaveFileAsString();
-    if (saveFileString.isEmpty) {
-      _store = SplayTreeSet();
-    } else {
-      Set<UserModel> decodedSet = (jsonDecode(saveFileString) as Set).map((json) => UserModel.fromJson(json)).toSet();
-      _store = SplayTreeSet.from(decodedSet, (x, y) => x.rollNumber.compareTo(y.rollNumber));
-    }
+    _store = SplayTreeSet.from(FilesUtils.getUserModelsSet(), (x, y) => x.rollNumber.compareTo(y.rollNumber));
   }
 
   /// Saves [_store] to store file.

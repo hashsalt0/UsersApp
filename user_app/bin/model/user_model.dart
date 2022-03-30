@@ -2,7 +2,7 @@ import '../utils/const.dart';
 import '../utils/utils.dart';
 import 'course.dart';
 
-class UserModel {
+class UserModel implements Comparable{
   String? fullName;
   int? age;
   String? address;
@@ -37,4 +37,9 @@ class UserModel {
   UserModel.fromRollNumber(int value) :
         rollNumber = value,
         courses = {};
+
+  @override
+  int compareTo(other) {
+     return rollNumber.compareTo(other.rollNumber);
+  }
 }

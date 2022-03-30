@@ -9,7 +9,7 @@ void main() {
     var input = [
       '1',
       'Snehil',
-      'snehil',
+      'Snehil',
       'patna',
       '10',
       '10',
@@ -20,7 +20,7 @@ void main() {
       '4',
       '1',
       'Ajay',
-      'ajay',
+      'Ajay',
       'patna',
       '10',
       '11',
@@ -28,8 +28,8 @@ void main() {
       'B',
       'C',
       'E',
-      '4',
-      '5'
+      '5',
+      '1'
     ].toList().iterator;
 
     Input.mock = () {
