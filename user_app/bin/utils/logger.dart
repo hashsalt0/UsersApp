@@ -22,8 +22,9 @@ class Log {
   }
 
   static void debug(Object? text) {
-    if (Config.env == Config.envDevelopment)
+    if (Config.env == Config.envDevelopment) {
       _printHelp("${LogColors.cyan}$text${LogColors.reset}");
+    }
   }
 
   static void help(Object? text) {

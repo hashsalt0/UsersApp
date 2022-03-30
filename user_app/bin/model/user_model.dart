@@ -1,5 +1,4 @@
 import '../utils/const.dart';
-import '../utils/string_values.dart';
 import '../utils/utils.dart';
 import 'course.dart';
 

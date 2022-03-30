@@ -7,35 +7,35 @@ import '../bin/menu/base/field.dart';
 import '../bin/menu/base/single_value_field.dart';
 import '../bin/model/course.dart';
 import '../bin/model/user_model.dart';
-import '../bin/utils/string_values.dart';
+import '../bin/utils/const.dart';
 import '../bin/utils/utils.dart';
 
 void main() {
   test('Local Save File Exists Test', () {
     UserModel model = UserModel.fromJson({
-      StringValues.rollNumberSerial: 1,
-      StringValues.coursesSerial: {Course.A.name, Course.B.name},
-      StringValues.addressSerial: "john",
-      StringValues.fullNameSerial: "ron swanson",
-      StringValues.ageSerial: 10
+      Const.rollNumberSerial: 1,
+      Const.coursesSerial: {Course.A.name, Course.B.name},
+      Const.addressSerial: "john",
+      Const.fullNameSerial: "ron swanson",
+      Const.ageSerial: 10
     });
     Map<String, Field> map = {
-      StringValues.rollNumberSerial:
+      Const.rollNumberSerial:
           SingleValueField<int>("", "", Utils.castToInt, (e) => true)
             ..value = 1,
-      StringValues.addressSerial:
+      Const.addressSerial:
           SingleValueField<String>("", "", Utils.castToString, (e) => true)
             ..value = "john",
-      StringValues.secondNameSerial:
+      Const.secondNameSerial:
           SingleValueField<String>("", "", Utils.castToString, (e) => true)
-          ..value = "swanson",
-      StringValues.firstNameSerial:
+            ..value = "swanson",
+      Const.firstNameSerial:
           SingleValueField<String>("", "", Utils.castToString, (e) => true)
             ..value = "ron",
-      StringValues.ageSerial:
+      Const.ageSerial:
           SingleValueField<int>("", "", Utils.castToInt, (e) => true)
             ..value = 10,
-      StringValues.coursesSerial: MultiValueField<Course>(
+      Const.coursesSerial: MultiValueField<Course>(
           "", "", "", 1, Utils.castToCourse, (e, x) => true)
         ..value = HashSet.of([Course.A, Course.B]),
     };
